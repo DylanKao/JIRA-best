@@ -1,0 +1,54 @@
+---
+
+- name: Install Java JDK 7
+  apt: pkg=openjdk-7-jdk state=installed
+
+- name: Create base directory
+  file: path=/opt/bamboo state=directory
+
+- name: Create user
+  user: 
+    name={{user}}
+    home=/opt/bamboo/home
+    createhome=true
+
+- name: Fetch Bamboo
+  get_url: 
+    url=http://downloads.atlassian.com/software/bamboo/downloads/{{bamboo_tar}}
+    dest={{bamboo_base}}/{{bamboo_tar}}
+
+- name: Unpack Bamboo
+  command: 
+    creates={{bamboo_dir}}
+    chdir={{bamboo_base}}
+    tar xzf {{bamboo_tar}}
+
+- name: Fix permissions for working directories
+  file: path={{bamboo_base}}/{{bamboo_dir}}/{{item}} owner={{user}} state=directory recurse=true
+  with_items:
+    - logs
+    - temp
+    - work
+
+- name: Configure Bamboo home
+  template: 
+    src=bamboo-init.properties.j2
+    dest={{bamboo_base}}/{{bamboo_dir}}/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties
+
+- name: Configure Bamboo DB datasource
+  template: 
+    src=context.xml.j2
+    dest={{bamboo_base}}/{{bamboo_dir}}/conf/context.xml
+
+- name: Symlink this to current
+  command:
+    chdir={{bamboo_base}}
+    ln -sf {{bamboo_dir}} current
+
+- name: Install systemd unit
+  template:
+    src=bamboo.service.j2
+    dest=/etc/systemd/system/bamboo.service
+  notify:
+    - enable_bamboo
+    - restart_bamboo

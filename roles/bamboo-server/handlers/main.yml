@@ -1,0 +1,8 @@
+---
+
+- name: enable_bamboo
+  service: name=bamboo.service enabled=true
+
+- name: restart_bamboo
+  service: name=bamboo.service state=restarted
+

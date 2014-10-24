@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian Bamboo Server
+After=network-online.target
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+User=bamboo
+Group=bamboo
+
+ExecStart={{bamboo_base}}/current/bin/catalina.sh run
+
+[Install]
+WantedBy=multi-user.target
+

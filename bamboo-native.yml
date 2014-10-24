@@ -2,9 +2,14 @@
 - hosts: all
   sudo: true
   vars:
+
     - user: bamboo
-    - userfullname: "bamboo"
-    - useremail: "ssmith@atlassian.com"
+    - userfullname: "bamboo user"
+
+    - psql_db: bamboo
+    - postgres_localhost_method: trust
 
   roles:
     - ubuntu-common
+    - postgres
+    - bamboo-server
