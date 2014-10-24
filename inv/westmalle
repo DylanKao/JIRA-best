@@ -1,0 +1,2 @@
+[all]
+westmalle  ansible_ssh_user=root

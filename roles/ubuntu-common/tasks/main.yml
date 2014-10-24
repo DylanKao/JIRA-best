@@ -1,0 +1,9 @@
+---
+
+- name: Install systemd
+  apt: pkg=systemd-sysv  update_cache=true
+  notify:
+    - reboot
+
+- name: Install basic packages
+  apt: pkg=sudo,python-pycurl,facter,ohai

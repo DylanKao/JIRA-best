@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    - user: bamboo
+    - userfullname: "bamboo"
+    - useremail: "ssmith@atlassian.com"
+
+  roles:
+    - ubuntu-common
