@@ -9,8 +9,9 @@
 - name: Create user
   user: 
     name={{user}}
-    home=/opt/bamboo/home
+    home={{bamboo_home}}
     createhome=true
+
 
 - name: Fetch Bamboo
   get_url: 
@@ -30,6 +31,7 @@
     - temp
     - work
 
+
 - name: Configure Bamboo home
   template: 
     src=bamboo-init.properties.j2
@@ -39,6 +41,7 @@
   template: 
     src=context.xml.j2
     dest={{bamboo_base}}/{{bamboo_dir}}/conf/context.xml
+
 
 - name: Symlink this to current
   command:
