@@ -1,3 +1,4 @@
 ---
 
-postgres_version: 9.4
+psql_version: 9.4
+psql_localhost_method: md5

@@ -1,0 +1,13 @@
+### Managed by Ansible ###
+
+# Database administrative login by Unix domain socket
+local   all             postgres                                peer
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     peer
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            {{psql_localhost_method}}
+# IPv6 local connections:
+host    all             all             ::1/128                 {{psql_localhost_method}}
