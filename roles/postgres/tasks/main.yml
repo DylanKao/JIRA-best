@@ -1,0 +1,14 @@
+---
+
+- name: Install Postgres
+  apt: pkg=postgresql-{{postgres_version}} state=installed
+
+- name: Create database user
+  sudo_user: postgres
+  command: createuser {{psql_db}}
+  when: psql_db is defined
+
+- name: Create database
+  sudo_user: postgres
+  command: createdb {{psql_db}} -O {{psql_db}}
+  when: psql_db is defined
