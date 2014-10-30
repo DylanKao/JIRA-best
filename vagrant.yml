@@ -6,11 +6,15 @@
     - user: bamboo
     - userfullname: "bamboo user"
 
+    - bamboo_version: "5.6.2"
+    
+
     - psql_db: bamboo
-    - postgres_localhost_method: trust
+    - psql_localhost_method: trust
 
   roles:
     - ubuntu-common
     - postgres
     - bamboo-server
+    - bamboo-agent
     - ubuntu-systemd

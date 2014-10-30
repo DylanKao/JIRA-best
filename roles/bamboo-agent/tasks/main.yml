@@ -1,0 +1,16 @@
+---
+
+- name: Create user
+  user: 
+    name={{bamboo_agent_user}}
+    home={{bamboo_agent_home}}
+    createhome=true
+
+# Note: Agent jar is used from Bamboo distribution
+- name: Install systemd unit
+  template:
+    src=bamboo-agent.service.j2
+    dest=/etc/systemd/system/bamboo-agent.service
+  notify:
+    - enable_bamboo_agent
+    - restart_bamboo_agent

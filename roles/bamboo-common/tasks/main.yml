@@ -1,0 +1,19 @@
+---
+
+- name: Install Java JDK 7
+  apt: pkg=openjdk-7-jdk state=installed
+
+- name: Create base directory
+  file: path={{bamboo_base}} state=directory
+
+
+- name: Fetch Bamboo
+  get_url: 
+    url=http://downloads.atlassian.com/software/bamboo/downloads/{{bamboo_tar}}
+    dest={{bamboo_base}}/{{bamboo_tar}}
+
+- name: Unpack Bamboo
+  command: 
+    creates={{bamboo_dir}}
+    chdir={{bamboo_base}}
+    tar xzf {{bamboo_tar}}

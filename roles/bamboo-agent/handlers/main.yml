@@ -1,0 +1,9 @@
+---
+
+- name: enable_bamboo_agent
+  command: systemctl enable bamboo-agent.service
+
+- name: restart_bamboo_agent
+  command: systemctl restart bamboo-agent.service
+  # Will fail if we do this before the systemd is booted into systemd
+  ignore_errors: true

@@ -1,0 +1,17 @@
+[Unit]
+Description=Atlassian Bamboo Agent
+After=network-online.target
+
+[Service]
+User={{bamboo_agent_user}}
+Group={{bamboo_agent_user}}
+
+ExecStart=/usr/bin/java -jar \
+    -Dbamboo.home={{bamboo_agent_home}} \
+    {{bamboo_base}}/current/atlassian-bamboo/admin/agent/atlassian-bamboo-agent-installer-{{bamboo_version}}.jar \
+    {{bamboo_server_url}}/agentServer/
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
