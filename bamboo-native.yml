@@ -15,6 +15,7 @@
 
     - bamboo_agent_capabilities:
         - ['docker.executable', '/usr/bin/docker']
+        - ['fig.executable',    '/usr/local/bin/fig']
 
   roles:
     - ubuntu-common

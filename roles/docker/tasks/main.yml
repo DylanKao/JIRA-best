@@ -12,3 +12,10 @@
 - name: Add users to docker group
   user: name={{item}} groups=docker append=yes
   with_items: docker_users
+
+
+- name: Install Fig
+  shell: 
+    curl -L https://github.com/docker/fig/releases/download/{{fig_version}}/fig-`uname -s`-`uname -m` > /usr/local/bin/fig && \
+    chmod +x /usr/local/bin/fig
+    creates=/usr/local/bin/fig
