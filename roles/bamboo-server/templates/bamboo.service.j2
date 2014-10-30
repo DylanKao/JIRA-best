@@ -5,8 +5,8 @@ After=postgresql.service
 Requires=postgresql.service
 
 [Service]
-User=bamboo
-Group=bamboo
+User={{bamboo_user}}
+Group={{bamboo_user}}
 
 ExecStart={{bamboo_base}}/current/bin/catalina.sh run
 

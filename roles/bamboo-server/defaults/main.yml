@@ -1,3 +1,4 @@
 ---
 
+bamboo_user: "bamboo"
 bamboo_home: "{{bamboo_base}}/home"

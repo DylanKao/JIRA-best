@@ -2,13 +2,13 @@
 
 - name: Create user
   user: 
-    name={{user}}
+    name={{bamboo_user}}
     home={{bamboo_home}}
     createhome=true
 
 
 - name: Fix permissions for working directories
-  file: path={{bamboo_base}}/{{bamboo_dir}}/{{item}} owner={{user}} state=directory recurse=true
+  file: path={{bamboo_base}}/{{bamboo_dir}}/{{item}} owner={{bamboo_user}} state=directory recurse=true
   with_items:
     - logs
     - temp
