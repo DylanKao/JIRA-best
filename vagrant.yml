@@ -12,5 +12,5 @@
   roles:
     - ubuntu-common
     - postgres
-    # - bamboo-server
+    - bamboo-server
     - ubuntu-systemd
