@@ -1,0 +1,10 @@
+---
+
+# This role should come last to other handlers run first
+
+- name: Install systemd
+  apt: pkg=systemd-sysv state=installed
+  notify: reboot
+
+- name: Divert Upstart binaries as they confuse Vagrant into trying to run upstart commands
+  command: dpkg-divert --rename /sbin/initctl

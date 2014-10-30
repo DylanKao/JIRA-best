@@ -1,0 +1,16 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - user: bamboo
+    - userfullname: "bamboo user"
+
+    - psql_db: bamboo
+    - postgres_localhost_method: trust
+
+  roles:
+    - ubuntu-common
+    - postgres
+    # - bamboo-server
+    - ubuntu-systemd

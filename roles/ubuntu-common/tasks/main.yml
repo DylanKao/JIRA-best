@@ -1,9 +1,4 @@
 ---
 
-- name: Install systemd
-  apt: pkg=systemd-sysv state=installed  update_cache=true
-  notify:
-    - reboot
-
 - name: Install basic packages
-  apt: pkg=sudo,python-pycurl,facter,ohai state=installed
+  apt: pkg=systemd,python-pycurl state=installed   update_cache=true cache_valid_time=86400
