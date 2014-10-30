@@ -8,13 +8,18 @@
 
     - bamboo_version: "5.6.2"
     
-
     - psql_db: bamboo
     - psql_localhost_method: trust
+
+    - docker_users:
+        - vagrant
+        - bamboo
+        - bamboo-agent
 
   roles:
     - ubuntu-common
     - postgres
+    - docker
     - bamboo-server
     - bamboo-agent
     - ubuntu-systemd
