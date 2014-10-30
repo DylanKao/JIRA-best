@@ -13,6 +13,9 @@
         - bamboo
         - bamboo-agent
 
+    - bamboo_agent_capabilities:
+        - ['docker.executable', '/usr/bin/docker']
+
   roles:
     - ubuntu-common
     - postgres

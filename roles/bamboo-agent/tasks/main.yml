@@ -6,6 +6,18 @@
     home={{bamboo_agent_home}}
     createhome=true
 
+- name: Create bamboo home bin
+  file: path={{bamboo_agent_home}}/bin/ owner={{bamboo_agent_user}}
+
+
+- name: Configure agent capabilities
+  template:
+    src=bamboo-capabilities.properties.j2
+    dest={{bamboo_agent_home}}/bin/bamboo-capabilities.properties
+  notify:
+    - restart_bamboo_agent
+
+
 # Note: Agent jar is used from Bamboo distribution
 - name: Install systemd unit
   template:
@@ -14,3 +26,12 @@
   notify:
     - enable_bamboo_agent
     - restart_bamboo_agent
+
+- name: Configure agent capabilities
+  template:
+    src=bamboo-capabilities.properties.j2
+    dest={{bamboo_agent_home}}/bin/bamboo-agent.service
+  notify:
+    - enable_bamboo_agent
+    - restart_bamboo_agent
+

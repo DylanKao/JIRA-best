@@ -1,9 +1,10 @@
 ---
 
 bamboo_agent_home: "{{bamboo_base}}/agent.home"
-
 bamboo_agent_user: "bamboo-agent"
 bamboo_agent_jar: "atlassian-bamboo-agent-installer-{{bamboo_version}}.jar"
 
 bamboo_server_host: "localhost"
 bamboo_server_url: "http://{{bamboo_server_host}}:8085"
+
+bamboo_agent_capabilities: []
