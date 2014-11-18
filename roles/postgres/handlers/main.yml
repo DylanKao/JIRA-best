@@ -2,3 +2,5 @@
 
 - name: restart_psql
   command: systemctl restart postgresql
+  # Will fail if we do this before the systemd is booted into systemd
+  ignore_errors: true

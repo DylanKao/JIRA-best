@@ -1,0 +1,13 @@
+---
+
+- name: reload_units
+  command: systemctl daemon-reload
+  ignore_errors: true
+
+- name: enable_stash
+  command: systemctl enable stash.service
+
+- name: restart_stash
+  command: systemctl restart stash.service
+  # Will fail if we do this before the systemd is booted into systemd
+  ignore_errors: true

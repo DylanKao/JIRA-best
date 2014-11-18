@@ -1,0 +1,4 @@
+---
+
+- name: Install Java JDK
+  apt: pkg="openjdk-{{jdk_version}}-jdk" state=installed

@@ -1,0 +1,55 @@
+---
+
+- name: Install Stash dependencies
+  apt: pkg=git state=installed
+
+- name: Create base directory
+  file: path={{stash_base}} state=directory
+
+- name: Fetch Stash
+  get_url: 
+    url=http://downloads.atlassian.com/software/stash/downloads/{{stash_tar}}
+    dest={{stash_base}}/{{stash_tar}}
+
+- name: Unpack Stash
+  command: 
+    creates={{stash_dir}}
+    chdir={{stash_base}}
+    tar xzf {{stash_tar}}
+
+
+- name: Create user
+  user: 
+    name={{stash_user}}
+    home={{stash_home}}
+    createhome=true
+
+
+- name: Fix permissions for working directories
+  file: path={{stash_base}}/{{stash_dir}}/{{item}} owner={{stash_user}} state=directory recurse=true
+  with_items:
+    - logs
+    - temp
+    - work
+
+
+- name: Create config directory
+  file: path={{stash_home}}/shared/ state=directory owner={{stash_user}}
+
+- name: Install default config
+  template: src="stash-config.properties.j2" dest="{{stash_home}}/shared/stash-config.properties"
+
+
+- name: Symlink install to current
+  command:
+    chdir={{stash_base}}
+    ln -sf {{stash_dir}} current
+
+- name: Install systemd unit
+  template:
+    src=stash.service.j2
+    dest=/etc/systemd/system/stash.service
+  notify:
+    - reload_units
+    - enable_stash
+    - restart_stash

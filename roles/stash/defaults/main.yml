@@ -1,0 +1,16 @@
+---
+
+stash_user: stash
+
+stash_version: "3.4.1"
+
+stash_dir: "atlassian-stash-{{stash_version}}"
+stash_tar: "atlassian-stash-{{stash_version}}.tar.gz"
+
+stash_base: "/opt/stash"
+stash_home: "{{stash_base}}/home"
+
+stash_db_host: localhost
+stash_db: stash
+stash_db_user: stash
+stash_db_passwd: stash

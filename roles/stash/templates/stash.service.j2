@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian Stash Server
+After=network-online.target
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+User={{stash_user}}
+Group={{stash_user}}
+
+Environment=STASH_HOME={{stash_home}}
+ExecStart={{stash_base}}/current/bin/catalina.sh run
+
+[Install]
+WantedBy=multi-user.target
