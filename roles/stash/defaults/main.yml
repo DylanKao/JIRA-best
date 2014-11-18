@@ -14,3 +14,8 @@ stash_db_host: localhost
 stash_db: stash
 stash_db_user: stash
 stash_db_passwd: stash
+
+stash_setup: false
+
+stash_admin_user: admin
+stash_admin_passwd: admin

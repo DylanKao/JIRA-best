@@ -8,8 +8,9 @@ Requires=postgresql.service
 User={{stash_user}}
 Group={{stash_user}}
 
-Environment=STASH_HOME={{stash_home}}
 ExecStart={{stash_base}}/current/bin/catalina.sh run
+Environment=STASH_HOME={{stash_home}} {% if stash_setup %} JAVA_OPTS=-Datlassian.dev.mode=true {% endif %}
+
 
 [Install]
 WantedBy=multi-user.target

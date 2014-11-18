@@ -1,7 +1,7 @@
 ---
 
 - name: Install Stash dependencies
-  apt: pkg=git state=installed
+  apt: pkg=git,curl state=installed
 
 - name: Create base directory
   file: path={{stash_base}} state=directory
@@ -53,3 +53,27 @@
     - reload_units
     - enable_stash
     - restart_stash
+
+- name: Install Stash license
+  command: >
+     curl -H 'Content-Type: application/json' \
+          --data '{"license":"{{stash_license}}" }' \
+          --user admin:admin \
+          http://localhost:7990/rest/api/1.0/admin/license
+  when: stash_setup
+
+
+- name: Create Admin user
+  command: >
+     curl -H 'Content-Type: application/json' --data '' \
+          --user admin:admin \
+          http://localhost:7990/rest/api/1.0/admin/users?name={{stash_admin_user}}&password={{stash_admin_passwd}}&displayName=AdminUser&emailAddress=root@localhost
+  when: stash_setup
+
+- name: Set Admin user permissions
+  command: >
+     curl -H 'Content-Type: application/json' --data '' \
+          --user admin:admin \
+          --request PUT \
+          http://localhost:7990/rest/api/1.0/admin/permissions/users?permission=SYS_ADMIN&name={{stash_admin_user}}
+  when: stash_setup
