@@ -4,7 +4,9 @@
 
 - name: Install systemd
   apt: pkg=systemd-sysv state=installed
-  notify: reboot
+  notify: 
+    - reboot
+    - localsleep
 
 - name: Divert Upstart binaries as they confuse Vagrant into trying to run upstart commands
   command: dpkg-divert --rename /sbin/initctl

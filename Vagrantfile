@@ -12,9 +12,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 7990, host: 7990
 
   config.vm.provider "virtualbox" do |vb|
-    vb.gui = false
-    
+    vb.gui = true
+
     vb.customize ["modifyvm", :id, "--memory", "4096"]
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ubuntu-systemd.yml"
+    ansible.verbose  = "vv"
   end
 
   config.vm.provision "ansible" do |ansible|

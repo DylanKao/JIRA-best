@@ -7,11 +7,10 @@
     - psql_localhost_method: trust
 
     # Uncomment these to do full setup
-    # - stash_license: "YOUR_LICENSE_WITHOUT_NEWLINES"
-    # - stash_admin_passwd: "A_SECURE_PASSWORD"
+    - stash_license: "YOUR_LICENSE_WITHOUT_NEWLINES"
+    - stash_admin_passwd: "A_SECURE_PASSWORD"
 
   roles:
-    - ubuntu-common
 
     - postgres
 
@@ -19,5 +18,3 @@
     - { role: stash, stash_setup: true }
     # 2nd reverts to non-devmode
     - role: stash
-    
-    - ubuntu-systemd

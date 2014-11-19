@@ -2,3 +2,7 @@
 
 - name: reboot
   command: /sbin/reboot
+
+- name: localsleep
+  sudo: false
+  local_action: command sleep 60
