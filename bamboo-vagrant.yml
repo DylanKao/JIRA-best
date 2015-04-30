@@ -3,7 +3,7 @@
   sudo: true
   vars:
 
-    - bamboo_version: "5.6.2"
+    - bamboo_version: "5.8.1"
     
     - psql_db: bamboo
     - psql_localhost_method: trust
@@ -23,4 +23,3 @@
     - docker
     - bamboo-server
     - bamboo-agent
-    - ubuntu-systemd

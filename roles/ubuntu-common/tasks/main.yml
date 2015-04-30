@@ -1,4 +1,4 @@
 ---
 
 - name: Install basic packages
-  apt: pkg=systemd,python-pycurl state=installed   update_cache=true cache_valid_time=86400
+  apt: pkg=python-pycurl state=installed   update_cache=true cache_valid_time=86400

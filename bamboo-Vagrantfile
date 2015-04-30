@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "vivid64"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
+
+  config.vm.network "forwarded_port", guest: 8085, host: 8085
+  config.vm.network "forwarded_port", guest: 7990, host: 7990
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+
+    vb.customize ["modifyvm", :id, "--memory", "4096"]
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "bamboo-vagrant.yml"
+    ansible.verbose  = "vv"
+  end
+
+end
