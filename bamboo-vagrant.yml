@@ -22,4 +22,3 @@
     - postgres
     - docker
     - bamboo-server
-    - bamboo-agent
