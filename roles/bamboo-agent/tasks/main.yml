@@ -7,7 +7,7 @@
     createhome=true
 
 - name: Create bamboo home bin
-  file: path={{bamboo_agent_home}}/bin/ owner={{bamboo_agent_user}}
+  file: path={{bamboo_agent_home}}/bin/ state=directory owner={{bamboo_agent_user}}
 
 
 - name: Configure agent capabilities
