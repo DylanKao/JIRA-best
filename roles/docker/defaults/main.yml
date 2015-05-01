@@ -1,4 +1,4 @@
 ---
 
 docker_users: []
-fig_version: "1.0.0"
+compose_version: "1.2.0"

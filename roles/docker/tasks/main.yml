@@ -14,8 +14,11 @@
   with_items: docker_users
 
 
-- name: Install Fig
-  shell: 
-    curl -L https://github.com/docker/fig/releases/download/{{fig_version}}/fig-`uname -s`-`uname -m` > /usr/local/bin/fig && \
-    chmod +x /usr/local/bin/fig
-    creates=/usr/local/bin/fig
+- name: Install Compose
+  get_url: url="https://github.com/docker/compose/releases/download/{{compose_version}}/docker-compose-{{ansible_system}}-{{ansible_machine}}" dest=/usr/local/bin/docker-compose
+
+- name: Set Compose permissions
+  file: path=/usr/local/bin/docker-compose mode=a+x
+
+
+
